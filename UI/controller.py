@@ -12,6 +12,7 @@ class Controller:
         self._model.buildGraph()
         self._view.txt_result.controls.append(ft.Text("Grafo correttamente creato"))
         self._view.txt_result.controls.append(ft.Text(f"Il grafo ha {self._model.getNumNodi()} nodi e {self._model.getNumArchi()}"))
+        self._view._btnCompConnessa.disabled = False
         self._view.update_page()
 
 
@@ -26,6 +27,7 @@ class Controller:
             self._view.update_page()
             return
         if self._model.checkExistance(nMin):
+            self._view.txt_result.controls.clear()
             connessa = self._model.handleConnessa(nMin)
             self._view.txt_result.controls.append(ft.Text(f"la componente connessa ha {len(connessa)} nodi"))
             for c in connessa:
